@@ -1,5 +1,3 @@
-<h1> Edited by Wahid Bawa </h1>
-
 # Lux HUD
 
 Lux HUD is a collection of [Conky](https://github.com/brndnmtthws/conky) configs that gives you almost a complete system monitoring.
