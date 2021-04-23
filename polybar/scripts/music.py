@@ -1,4 +1,3 @@
-from pprint import pprint
 import sys
 import os
 
@@ -11,6 +10,8 @@ file = open("test.txt", "r")
 readIn = file.readline()
 if len(readIn) != 0:
 	num = int(readIn)
+else:
+	num = 1
 
 file.close()
 if status in ["playing", "paused"]:
