@@ -1,0 +1,6 @@
+#!/bin/bash
+for (( c=0; c<100; c++ ))
+do
+  # sl
+	sudo powertop --auto-tune
+done
