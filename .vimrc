@@ -41,6 +41,7 @@ Plug 'wadackel/vim-dogrun'
 Plug 'owozsh/amora'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-dispatch'
+Plug 'udalov/kotlin-vim'
 call plug#end()
 
 set nocompatible
