@@ -42,6 +42,8 @@ Plug 'owozsh/amora'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'udalov/kotlin-vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'ccd app & yarn install' }
 call plug#end()
 
 set nocompatible
@@ -177,6 +179,10 @@ vmap <silent> <Leader>y "+y
 nmap <silent> <Leader>p "+p
 vmap <silent> <Leader>p "+p
 
+" plasticboy/vim-markdown ------------------------------
+
+autocmd FileType markdown set conceallevel=0
+autocmd FileType markdown normal zR
 
 
 " Airline ------------------------------

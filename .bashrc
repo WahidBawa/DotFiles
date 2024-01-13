@@ -104,6 +104,10 @@ alias src='source ~/.bashrc'
 alias la="ls -la"
 alias uwin='ssh bawaw@cs.uwindsor.ca'
 alias uwinDO='ssh root@167.99.184.31'
+alias riis='cd ~/Documents/GitHub/RIIS/'
+alias k='kubectl'
+alias dc='docker-compose'
+# alias vim='subl $1'
 
 xhost +local:root > /dev/null 2>&1
 
@@ -161,8 +165,38 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 
 neofetch
-source ~/.cargo/env
+# source ~/.cargo/env
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-source "/home/wahid/.redcmd/scripts/autocomp_func.sh"	#__redcmd_autocomp_user_script
+# source "/home/wahid/.redcmd/scripts/autocomp_func.sh"	#__redcmd_autocomp_user_script
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/wahid/.sdkman"
+[[ -s "/home/wahid/.sdkman/bin/sdkman-init.sh" ]] && source "/home/wahid/.sdkman/bin/sdkman-init.sh"
+. "$HOME/.cargo/env"
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=/usr/include/gdal
+export C_INCLUDE_PATH=/usr/include/gdal
+export IRIS_CONNECTION_STRING="postgresql:///iris"
+# export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.10/site-packages
+#
+export PATH="$PATH:/home/jeremy/.dotnet/tools"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+
+export ANDROID_HOME=${HOME}/Android/Sdk
+export PATH=${ANDROID_HOME}/tools:${PATH}
+export PATH=${ANDROID_HOME}/emulator:${PATH}
+export PATH=${ANDROID_HOME}/platform-tools:${PATH}
+
+HISTSIZE= 
+HISTFILESIZE=
+
+# eval "$(starship init bash)"

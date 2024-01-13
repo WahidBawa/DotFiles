@@ -12,4 +12,6 @@ case "$EXT" in
 	md) pandoc -f markdown "$FILE" --pdf-engine=pdflatex -o "$BASE".pdf ;;
 	py) python3 "$FILE" ;;
 	tex) xelatex -shell-escape --output-directory="$DIR" "$FILE" ;;
+    kt) kotlinc "$FILE" -include-runtime -d "$BASE".jar && java -jar "$BASE".jar ;;
+    go) go run "$FILE"
 esac

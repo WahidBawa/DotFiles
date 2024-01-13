@@ -1,29 +1,40 @@
 import sys
 import os
 
-status = os.popen("playerctl status 2> /dev/null").read().lower()[:-1]
-output = ''
-pause = '契 '
-play = ' '
+status = os.popen("playerctl -p spotify status 2> /dev/null").read().lower()[:-1]
+LENGTH = 20
+output = ' '*(LENGTH//2)
+output_cut = ''
+play = '契 '
+pause = ' '
 
-file = open("test.txt", "r")
-readIn = file.readline()
+scroll_file = open("/home/wahid/.config/polybar/scripts/test.txt", "r+")
+readIn = scroll_file.readline()
 if len(readIn) != 0:
-	num = int(readIn)
+    num = int(readIn)
 else:
-	num = 1
+    num = 0
+    scroll_file.write(str(num))
+scroll_file.close()
 
-file.close()
 if status in ["playing", "paused"]:
-	title = os.popen("playerctl metadata title 2> /dev/null").read()[:-1]
-	artist = os.popen("playerctl metadata artist 2> /dev/null").read()[:-1]
-	if len(artist): artist += ' - '
+    info = os.popen("playerctl -p spotify metadata 2> /dev/null | grep 'artist\|title' | tr -s ' ' | cut -d' ' -f3- | head -c -1 | sed -z 's/\\n/ - /g' && echo ''").read()[:-1]
 
-	output += "  " + artist + title
-	
-	file = open("test.txt", "w+")
-	num += (-num if output[num:] == "" else 1)
-	file.write(str(num))
-	file.close()
+    output += info
 
-print((play if status == "playing" else (pause if status == "paused" else "")) + output[num:])
+    if len(output) >= LENGTH:
+        num += 1
+        if num >= len(output):
+            num = 0
+        output_cut = output[num:num+LENGTH]
+    else:
+        num = 0
+    scroll_file = open("/home/wahid/.config/polybar/scripts/test.txt", "w")
+    scroll_file.write(str(num))
+    scroll_file.close()
+
+form = "%%-%ds" % (LENGTH)
+if len(output_cut):
+    print((play if status == "playing" else (pause if status == "paused" else "")) + form % output_cut)
+else:
+    print("")
